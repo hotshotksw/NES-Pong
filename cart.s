@@ -377,16 +377,10 @@ drawscore:
     STA $2006           ; draw score at PPu $2020 - position in nametable
 
     LDA score1Hundreds   ; get first digit
-;   CLC 
-;   ADC #$30            ; add ascii offset (this is UNUSED in this example as in this .chr digits start at tile 0)
     STA $2007           ; write to PPU address $2020
     LDA score1Tens       ; next digit
-;   CLC
-;   ADC #$30            ; add ascii offset
     STA $2007
     LDA score1Ones       ; last digit
-;   CLC
-;   ADC #$30            ; add ascii offset
     STA $2007
 
 ;;; Player 2 ;;;
@@ -394,19 +388,13 @@ drawscore:
     LDA #$20
     STA $2006
     LDA #$3D
-    STA $2006           ; draw score at PPu $202D - position in nametable
+    STA $2006           ; draw score at PPU $202D - position in nametable
 
     LDA score2Hundreds   ; get first digit
-;   CLC 
-;   ADC #$30            ; add ascii offset (this is UNUSED in this example as in this .chr digits start at tile 0)
     STA $2007           ; write to PPU address $202D
     LDA score2Tens       ; next digit
-;   CLC
-;   ADC #$30            ; add ascii offset
     STA $2007
     LDA score2Ones       ; last digit
-;   CLC
-;   ADC #$30            ; add ascii offset
     STA $2007
     RTS 
 
@@ -418,7 +406,7 @@ inc1ones:
     STA score1Ones 
     CMP #$0A            ; check for overflow, now equal 10
     BNE inc1done 
-inct1ens:
+inc1tens:
     LDA #$00
     STA score1Ones       ; reset ones digit from 9 to 0
     LDA score1Tens       ; load second digit
@@ -445,7 +433,7 @@ inc2ones:
     STA score2Ones 
     CMP #$0A            ; check for overflow, now equal 10
     BNE inc2done 
-inct2ens:
+inc2tens:
     LDA #$00
     STA score2Ones       ; reset ones digit from 9 to 0
     LDA score2Tens       ; load second digit
